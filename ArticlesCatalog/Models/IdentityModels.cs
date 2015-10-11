@@ -28,6 +28,8 @@ namespace ArticlesCatalog.Models
         public DbSet<Topic> Topics { get; set; }
 
 
+        public DbSet<Article> Articles { get; set;}
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -10,11 +10,6 @@ namespace ArticlesCatalog.Models
 {
     public class Topic
     {
-        public Topic()
-        {
-            Childs = new List<Topic>(); 
-        }
-
         [Key]
         public int TopicID { get; set; }
 
@@ -28,6 +23,8 @@ namespace ArticlesCatalog.Models
        
         public virtual Topic Parent { get; set; }
 
-        public virtual ICollection<Topic> Childs { get; set; } 
+        public virtual ICollection<Topic> Childs { get; set; } = new List<Topic>();
+
+        public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
     }
 }

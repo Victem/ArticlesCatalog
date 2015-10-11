@@ -33,8 +33,8 @@ namespace ArticlesCatalog.DataAccess
                 for (int i = 0; i < 3; i++)
                 {
                     Topic subTopic = new Topic();
-                    subTopic.TopicName = topic.TopicName + "-{i}";
-                    topic.Childs.Add(topic);
+                    subTopic.TopicName = topic.TopicName + $"-{i}";
+                    topic.Childs.Add(subTopic);
                 }
             }
 
@@ -45,15 +45,25 @@ namespace ArticlesCatalog.DataAccess
                 for (int i = 0; i < 3; i++)
                 {
                     Topic subTopic = new Topic();
-                    subTopic.TopicName = topic.TopicName + "-{i}";
-                    topic.Childs.Add(topic);
+                    subTopic.TopicName = topic.TopicName + $"-{i}";
+                    topic.Childs.Add(subTopic);
                 }
             }
 
             context.SaveChanges();
 
-       
 
+            foreach(Topic topic in context.Topics)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Article article = new Article() { ArticleHeader = topic.TopicName + $"Header-{i}", ArticleText = topic.TopicName+$" Article body {topic.TopicID}-{i}", };
+                    topic.Articles.Add(article);
+                }
+
+            }
+
+            context.SaveChanges();
             //ApplicationUser user = new ApplicationUser()
             //{
             //    UserName = "Admin",
